@@ -91,7 +91,7 @@ threedp_pm.__doc__ = _docstring(
 
 def threedp_e0_emfits(starttime, endtime):
     identifier = 'WI_EMFITS_E0_3DP'
-    return _wind(starttime, endtime, identifier)
+    return _wind(starttime, endtime, identifier, badvalues=-1e+31)
 
 
 threedp_e0_emfits.__doc__ = _docstring(
