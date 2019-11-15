@@ -81,24 +81,33 @@ def sweap_spc_l3(starttime, endtime):
 
 # FIELDS classes/methods
 class _FIELDSDownloader(_PSPDownloader):
+    epoch_label = 'epoch_mag_RTN_1min'
     badvalues = None
 
-
-class _FIELDSmag_RTN_1min_Downloader(_FIELDSDownloader):
-    epoch_label = 'epoch_mag_RTN_1min'
+    def __init__(self, product):
+        self.product = product
 
     def local_dir(self, interval):
         year = interval.start.strftime('%Y')
-        return pathlib.Path('psp') / 'fields' / 'l2' / 'mag_rtn_1min' / year
+        return pathlib.Path('psp') / 'fields' / 'l2' / self.product / year
 
     def fname(self, interval):
         datestr = interval.start.strftime('%Y%m%d')
-        return f'psp_fld_l2_mag_rtn_1min_{datestr}_v01.cdf'
+        return f'psp_fld_l2_{self.product}_{datestr}_v01.cdf'
 
 
 def fields_mag_rtn_1min(starttime, endtime):
     """
     1 minute averaged magnetic field data.
     """
-    dl = _FIELDSmag_RTN_1min_Downloader()
+    dl = _FIELDSDownloader('mag_rtn_1min')
+    return dl.load(starttime, endtime)
+
+
+
+def fields_mag_rtn(starttime, endtime):
+    """
+    Magnetic field data.
+    """
+    dl = _FIELDSDownloader('mag_rtn')
     return dl.load(starttime, endtime)
