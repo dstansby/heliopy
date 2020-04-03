@@ -9,8 +9,9 @@ import tempfile
 
 import requests
 import requests.exceptions
-import sunpy.time as stime
 import tqdm.auto as tqdm
+
+import sunpy.time as stime
 
 import heliopy.data.util as util
 
