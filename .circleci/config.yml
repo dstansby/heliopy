@@ -19,7 +19,7 @@ doc-changeog: &doc-changelog
 
 doc-run: &doc-build
   name: Build documentation
-  command: make html SPHINXOPTS='-W -q'
+  command: make html
   working_directory: doc
 
 version: 2
