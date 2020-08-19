@@ -14,9 +14,7 @@ def test_kernel_download(kernel):
         pytest.skip("PSP kernels don't work on Azure")
 
     # Test download
-    with pytest.warns(None) as record:
-        kernel = spice.get_kernel(kernel)[0]
-    assert len(record) == 0
+    kernel = spice.get_kernel(kernel)[0]
 
     # Check that kernel is valid
     if kernel.fname.suffix == '.spk':
