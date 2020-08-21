@@ -869,6 +869,10 @@ class RemoteFileNotPresentError(RuntimeError):
     pass
 
 
+class DownloadError(RuntimeError):
+    pass
+
+
 def load(filename, local_dir, remote_url,
          try_download=True, remote_error=False):
     """
@@ -983,7 +987,9 @@ def _download_url(url, local_path):
     print(f'Downloading {url} to {local_path}')
     dl = parfive.Downloader()
     dl.enqueue_file(url, filename=local_path)
-    dl.download()
+    result = dl.download()
+    if len(result.errors):
+        raise DownloadError from result.errors[0][2]
 
 
 def _load_remote(remote_url, filename, local_dir, filetype):
