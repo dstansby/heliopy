@@ -45,8 +45,8 @@ class SPKKernel:
     """
     A class for a single .spk kernel.
 
-    See also
-    --------
+    References
+    ----------
     https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/req/spk.html
     """
     def __init__(self, fname):
@@ -158,7 +158,7 @@ class Trajectory:
 
         Parameters
         ----------
-        times : time like
+        times : astropy.time.Time
             An object that can be parsed by `~astropy.time.Time`.
         observing_body : str or int
             The observing body. Output position vectors are given relative to
@@ -169,7 +169,7 @@ class Trajectory:
             The coordinate system to return the positions in. See
             https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/req/frames.html
             for a list of frames.
-        abcorr : str, optional
+        abcorr : str
             By default no aberration correciton is performed.
             See the documentaiton at
             https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/spkezr_c.html

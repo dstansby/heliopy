@@ -179,7 +179,7 @@ def get_kernel(name):
 
     Returns
     -------
-    list of `~heliopy.spice.Kernel`
+    list of `~heliopy.spice.SPKKernel`
         List of loaded kernels.
     """
     from heliopy import spice

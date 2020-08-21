@@ -144,8 +144,8 @@ class Downloader(abc.ABC):
 
         Returns
         -------
-        fnames : list of sunpy.time.TimeRange
-            List of intervals
+        fnames : list
+            List of `~sunpy.time.TimeRange` intervals.
         """
         pass
 
@@ -326,7 +326,7 @@ def process(dirs, fnames, extension, local_base_dir, remote_base_url,
     download_info : list
         A list with the same length as *fnames*, which contains extra info
         that is handed to *download_func* for each file individually.
-    remote_fnames : list of str
+    remote_fnames : list
         If the remote filenames are different from the desired downloaded
         filenames, this should be a list of length ``len(fnames)`` with the
         files to be downloaded. The ordering must be the same as *fnames*.
@@ -515,7 +515,7 @@ def cdf_units(cdf_, manual_units=None, length=None):
 
     Parameters
     ----------
-    cdf_ : cdflib.CDF
+    cdf_ : cdflib.cdfread.CDF
         Opened cdf file
     manual_units : ~collections.OrderedDict
         Manually defined units to be attached to the data that will be
@@ -651,11 +651,11 @@ def pitchdist_cdf2df(cdf, distkeys, energykey, timekey, anglelabels):
 
     Parameters
     ----------
-    cdf : cdflib.CDF
+    cdf : cdflib.cdfread.CDF
         Opened cdf file.
     distkeys : list
         A list of the cdf keys for a given energies. Each array accessed by
-        distkeys is shape ``(n, l)``, and there must be `m` distkeys.
+        distkeys is shape ``(n, l)``, and there must be ``m`` distkeys.
     energykey : str
         The cdf key for the energy values. The array accessed by energykey
         must have shape ``(m)`` or ``(a, m)`` where ``a`` can be anything. If
@@ -721,7 +721,7 @@ def cdf2df(cdf, index_key, dtimeindex=True, badvalues=None,
 
     Parameters
     ----------
-    cdf : cdf
+    cdf : cdflib.cdfread.CDF
         Opened CDF file.
     index_key : str
         The CDF key to use as the index in the output DataFrame.
@@ -895,7 +895,7 @@ def load(filename, local_dir, remote_url,
 
     Returns
     -------
-    file : CDF, open file, None
+    file : cdflib.cdfread.CDF, str, None
         If *filename* ends in *.cdf* the CDF file will be opened and
         returned.
 
